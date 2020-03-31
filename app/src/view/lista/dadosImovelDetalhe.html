@@ -1,0 +1,76 @@
+<div class="container detalhamento" layout-padding>
+      	
+    <div class="form-group">
+		<label>Finalidade Imóvel: </label> <span>{{registro.ocupacao == 'R' ? 'RESIDENCIAL' : 'NÃO RESIDENCIAL'}}</span>
+	</div>
+
+	<div class="form-group">
+	<label>Tipo de Imóvel: </label> <span>{{registro.imovel_tipo}} {{registro.imovel_tipo_descricao}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>Motivo da Locação: </label> <span>{{registro.motivo_locacao}}</span>
+	</div>
+	
+	<!-- Trecho executado se finalidade imovel for não residencial -->
+		<div class="form-group" ng-if="registro.ocupacao != 'R'">
+			<label>A locação pretendida é para empresa já constituída: </label> <span>{{registro.empresa_constituida}}</span>
+			<label ng-if="registro.empresa_constituida == 'S' ">CNPJ empresa: </label> <span ng-if="registro.empresa_constituida == 'S' ">{{registro.cnpj_empresa_constituida}}</span>
+		</div>
+		
+		<div class="form-group" ng-if="registro.ocupacao != 'R'">
+			<label>Ramo de atividade da empresa: </label> <span>{{registro.ramo_atividade_empresa}}</span>
+		</div>
+		
+		<div class="form-group" ng-if="registro.ocupacao != 'R'">
+			<label>Trata-se de Franquia: </label> <span>{{registro.franquia_empresa}}</span>
+			<label ng-if="registro.franquia_empresa == 'S' ">Nome da Franqueadora: </label> <span ng-if="registro.franquia_empresa == 'S' ">{{registro.franqueadora_empresa}}</span>	
+		</div>
+		
+		<div class="form-group" ng-if="registro.ocupacao != 'R'">
+			<label>Produtos/serviços fabricados, revendidos ou prestados: </label> <span>{{registro.produtos_servicos_empresa}}</span>
+		</div>
+		
+		<div class="form-group" ng-if="registro.ocupacao != 'R'">
+			<label>Experiência no ramo pretendido: </label> <span>{{registro.experiencia_ramo_empresa}}</span>
+		</div>
+		
+		<div class="form-group" ng-if="registro.ocupacao != 'R'">
+			<label>Faturamento mensal estimado: </label> <span>{{registro.faturam_estim_empresa}}</span>
+		</div>
+		
+		<div class="form-group" ng-if="registro.ocupacao != 'R'">
+			<label>Prazo estimado para o retorno do capital investido: </label> <span>{{registro.ret_cap_invest_empresa}}</span>
+		</div>
+		
+	<div class="form-group">
+		<label>CEP: </label> <span>{{registro.cep}}</span>
+		<label>Estado: </label> <span>{{registro.uf}}</span>
+		<label>Cidade: </label> <span>{{registro.cidade}}</span>
+
+	</div>
+	
+	<div class="form-group">
+		<label>Endereço: </label> <span>{{registro.endereco}}</span>
+		<label>Bairro: </label> <span>{{registro.bairro}}</span>
+		<label>Numero: </label> <span>{{registro.numero}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>Complemento: </label> <span>{{registro.complemento}}</span>
+	</div>
+
+	<div class="form-group">
+		<label>Aluguel: </label> <span>{{registro.aluguel}}</span>
+		<label>Iptu Mensal: </label> <span>{{registro.iptu}}</span>
+	</div>
+
+
+	<div class="form-group">
+		<label>Condomínio: </label> <span>{{registro.condominio}}</span>
+		<label>Água: </label> <span>{{registro.agua}}</span>
+		<label>Luz: </label> <span>{{registro.energia}}</span>
+		<label>Gás Canalizado: </label> <span>{{registro.gas}}</span>
+	</div>
+
+</div>

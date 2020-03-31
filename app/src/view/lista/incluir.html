@@ -1,0 +1,91 @@
+<div class="row row-center">
+	<div class="col-sm-10 col-center">
+		<div class="panel panel-default" style="margin-bottom: 5px; margin-top: 5px;">
+			<div class="panel-heading">
+				<h2 class="panel-title">Incluir Registro</h2>
+			</div>
+
+			 <!-- Array erros de validação -->
+		  <span id="listErrors">
+		    <div class="alert alert-warning" role="alert" ng-if="errors.length > 0">
+		      <div ng-repeat="erro in errors">
+		        <span class="glyphicon glyphicon-exclamation-sign"> </span> {{erro}}
+		      </div>
+		  </div>
+		</span>
+
+			<div class="panel-body fixed-panel">
+
+			<form name="formIncluirRegistro" class="fundo-formulario">
+
+		<div layout="column" layout-padding layout-gt-sm="row">
+			<div flex-gt-sm="10">
+      			<label for="dataEmissao">Data</label>
+      			<input type="text" id="dataEmissao" name="novoReg.data" autocomplete="off" 
+      			class="form-control" datepicker mascara="99/99/9999" requerido
+      			ng-model="novoReg.data" ng-tabindex="1">
+    		</div>
+
+    		<div flex-gt-sm="10">
+      			<label for="horaEmissao">Hora</label>
+      			<input type="text" id="horaEmissao" name="novoReg.hora" autocomplete="off" 
+      			class="form-control" mascara="99:99:99" requerido
+      			ng-model="novoReg.hora" ng-tabindex="2">
+    		</div>
+		</div>
+
+			<div layout="column" layout-padding layout-gt-sm="row">
+			  <div class="md-block" flex-gt-sm="30">
+			        <label for="cgcImob">Imobiliária</label>
+			        <select class="form-control" id="cgcImob" ng-tabindex="3" name="novoReg.cgcImob" 
+			          data-ng-options="cgc as cgc.fantasia for cgc in listaCGC_Imob"
+			          ng-model="novoReg.cgcImob" requerido focus>
+			        </select>
+			  </div>
+
+			  <div class="md-block" flex-gt-sm="40">
+          		<label for="inquilino">Inquilino</label>
+          		<input type="text" id="inquilino" upper name="novoReg.inquilino" requerido
+          		maxlength="30" class="form-control" ng-model="novoReg.inquilino" ng-tabindex="4">
+        	</div>
+
+		</div>
+		
+		<div layout="column" layout-padding layout-gt-sm="row">
+		<div class="md-block" flex-gt-sm="10">
+	            <label for="tipoInquilino">Tipo Inquilino</label>
+	            <select class="form-control" id="tipoInquilino" ng-tabindex="5" flex-gt-sm="100"
+	            	ng-model="novoReg.tipoInquilino" requerido>
+	              <option value="F">P.Física</option>
+	              <option value="J">P.Jurídica</option>
+	                      
+	            </select>
+     	   </div>
+
+     	  <div class="md-block" flex-gt-sm="20">
+		      <label for="cpfInquilino">CPF/CNPJ Inquilino</label>
+		      <input mobile="number"  mascara-cpfcnpj  id="cpfInquilino" name="novoReg.cpfInquilino"
+		      class="form-control" ng-model="novoReg.cpfInquilino" ng-tabindex="6" requerido>
+	     </div>
+		</div>
+		
+		</form>
+
+		</div>
+
+	</div>
+	
+	<!-- Botoes -->
+	<div layout="row" layout-align="center center">
+	 <md-button class="md-raised" ng-click="enviarAnalise()" style="background-color: orange; color: white" >
+     Enviar Análise <span aria-hidden="true"></span></md-button>
+     
+     <md-button class="md-raised" ng-click="gravarRegistro()" style="background-color: green; color: white" >
+     Gravar <span aria-hidden="true"></span></md-button>
+
+    <md-button class="md-raised md-warn md-hue-2"  ng-click="irParaListagem()">
+    Cancelar <span aria-hidden="true"></span></md-button>
+  </div> 
+		
+  </div>
+</div>

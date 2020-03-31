@@ -1,0 +1,165 @@
+<style>
+.detalhamento .form-group{
+	margin-bottom: 2px !important;
+}
+
+.detalhamento span{
+	padding-right: 10px;
+}
+
+</style>
+<div class="row row-center">
+	<div class="col-sm-10 col-center">
+		<div class="panel panel-default" style="margin-bottom: 5px; margin-top: 5px;">
+			<div class="panel-heading">
+				<h2 class="panel-title"><strong>Código SJ: {{registro.codigo}}</strong></h2>
+			</div>
+
+	<div class="row" style="padding: 10px;">
+		<!-- Card Liberty -->
+		<div class="card col-sm-4">
+		  <img class="card-img-top" src="./assets/img/liberty_icone.png" alt="Card image cap" style="height: 47px">
+		  <div class="card-body">
+		    <p class="card-text"><strong>Análise :</strong> {{registro.processo_liberty}} <br/> <strong>Situação:</strong> {{registro.situacao_analise_liberty}}</p>
+		  </div>
+		</div>
+		
+		<!-- Card Porto -->
+		<div class="card col-sm-4">
+		  <img class="card-img-top" src="./assets/img/porto_icone.png" alt="Card image cap" style="height: 47px">
+		  <div class="card-body">
+		    <p class="card-text"><strong>Análise :</strong> {{registro.processo_porto}} <br/> <strong>Situação:</strong> {{registro.situacao_analise_porto}}</p>
+		  </div>
+		</div>
+		
+		<!-- Card Too -->
+		<div class="card col-sm-4">
+		  <img class="card-img-top" src="./assets/img/too_icone.png" alt="Card image cap">
+		  <div class="card-body">
+		    <p class="card-text"><strong>Análise :</strong> {{registro.processo_too}} <br/> <strong>Situação:</strong> {{registro.situacao_analise_too}}</p>
+		  </div>
+		</div>
+	</div>
+
+			<div class="panel-body fixed-panel">
+
+					<div class="bs-example">
+						<div class="panel-group" id="accordion">
+						
+						
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href=".collapseTwo">
+										Dados Pretendente <span class="caret"></span></a>
+									</h4>
+								</div>
+								<div class="collapseTwo panel-collapse collapse">
+									<div class="panel-body">
+										<!-- Detalhamento dados do pretendente -->
+										<div data-ng-include="'./src/view/lista/dadosPretendenteDetalhe.html'"></div> 
+										
+									</div>
+								</div>
+							</div>
+						
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href=".collapseOne">
+										Residência Atual <span class="caret"></span></a>
+									</h4>
+								</div>
+								<div class="collapseOne panel-collapse collapse">
+									<div class="panel-body">												
+										<!-- Detalhamento dados residenciais -->
+										<div data-ng-include="'./src/view/lista/dadosResidenciaisDetalhe.html'"></div> 
+									</div>
+								</div>
+							</div>
+							
+							
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href=".collapseNine">
+										Dados Profissionais <span class="caret"></span></a>
+									</h4>
+								</div>
+								<div class="collapseNine panel-collapse collapse">
+									<div class="panel-body">
+										<!-- Detalhamento dados profissionais -->
+										<div data-ng-include="'./src/view/lista/dadosProfissionaisDetalhe.html'"></div>								
+									</div>
+								</div>
+							</div>
+							
+														
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href=".collapseEspecial">
+										Imóvel Pretendido <span class="caret"></span></a>
+									</h4>
+								</div>
+								<div class="collapseEspecial panel-collapse collapse">
+									<div class="panel-body">
+										<!-- Detalhamento dados imóvel -->
+										<div data-ng-include="'./src/view/lista/dadosImovelDetalhe.html'"></div>																				
+									</div>
+								</div>
+							</div>
+												
+							
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href=".collapseAutomacao">
+										Composição Renda <span class="caret"></span></a>
+									</h4>
+								</div>
+								<div class="collapseAutomacao panel-collapse collapse">
+									<div class="panel-body">
+										<!-- Detalhamento dados composição de renda -->
+										<div data-ng-include="'./src/view/lista/composicaoRendaDetalhe.html'"></div> 
+																					
+									</div>
+								</div>
+							</div>
+							
+						</div>
+						
+					</div>
+				
+
+					<a ng-href="../app/php/uploads/{{gerarLinkPastaUpload(registro)}}" ng-if="registro.fezUpload"
+					class="btn btn-info" role="button">Ver arquivos</a>
+
+					<div class="alert alert-warning" ng-if="!registro.fezUpload">
+  						Não fez upload de arquivos.
+					</div>
+			</div>
+
+		</div>
+
+		<div class="row" style="text-align: right;">
+			<label class="col-xs-11 control-label label-thin">Apólice: {{registro.apolice}}</label>
+			<label class="col-xs-11 control-label label-thin">Seguradora: {{getNomeSeguradora(registro)}}</label>
+			<span class="glyphicon glyphicon-pencil" style="cursor: pointer; margin-right: 60px;"  data-ng-click="iniciarDadosAplice()"
+			data-toggle="modal" data-target="#modalDadosApolice"></span>
+		</div>
+		
+		<!-- Importe dos botoes do Form -->
+					<div class="form-group last">
+						<div class="col-md-12 text-center">
+							 <md-button class="md-raised" style="background-color: green; color: white" 
+						      ng-click="irParaListagem()">Voltar a listagem <span aria-hidden="true"></span>
+						      </md-button>
+						</div>
+				</div>
+
+	</div>
+	
+	<!-- Inclusão do modal dados apolice -->
+     <div data-ng-include="'./src/view/lista/modalDadosApolice.html'"></div> 
+</div>

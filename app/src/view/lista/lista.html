@@ -1,0 +1,139 @@
+<style>
+.pendente{
+  color: #CC6600!important;
+}
+
+.circulo{
+  border-radius: 100%;
+  border: 1px solid black;
+  width: 23px;
+  height: 23px;
+  background-color: rgb(255, 241, 74);
+}
+.circulo-vermelho{
+  background-color: rgb(221,44,0) !important;
+}
+
+.circulo-verde{
+  background-color: rgb(29, 171, 27) !important;
+}
+
+.circulo-cinza{
+  background-color: rgba(179, 179, 179, 0.87) !important;
+}
+
+div {
+  text-align: left;
+}
+
+</style>
+
+  <div class="row">
+      <div class="col-md-10">
+        <h2>Cadastros de Fiança Locatícia</h2>
+      </div>  
+      
+       <div class="col-md-3">
+       <md-button class="md-raised md-primary" ng-click="incluirRegistro()" style="margin-top: 20px;">Incluir 
+        <span aria-hidden="true"></span>
+      </md-button>
+      </div>      
+      
+      <div class="col-md-5"></div>
+      
+      <div class="col-md-4">
+	      <label>Imobiliária</label>
+	      <select  data-ng-model="q.fantasia" class="form-control form-control-small"
+				data-ng-options = "imob for imob in listaImobiliarias">
+				<option value="" style="font-weight: bold;">TODAS</option>
+			</select>
+	</div>
+					
+  </div>
+
+  <hr/>
+
+  <audio id="notificacao" preload="auto">
+    <source src="./assets/audio/alerta.mp3" type="audio/mpeg">
+  </audio>
+          
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th class="col-sm-1">CÓDIGO</th>
+        <th class="col-sm-2">CLIENTE</th>
+        <th class="col-sm-1">CPF/CNPJ</th>
+        <th class="col-sm-1">IMOBILIÁRIA</th>
+        <th class="col-sm-1">USUÁRIO</th>
+        <th class="col-sm-1">ATENDENTE</th>
+        <th class="col-sm-1">DATA</th>
+        <th class="col-sm-1">HORA</th>
+
+        <th class="col-sm-1"><img src="./assets/img/liberty_icone.png" class="icon-seguradora" style="height: 47px"></div></th>
+        <th class="col-sm-1"><img src="./assets/img/porto_icone.png" class="icon-seguradora" style="height: 47px"></div></th>
+        <th class="col-sm-1"><img src="./assets/img/too_icone.png" class="icon-seguradora"></div></th>
+
+        <th class="col-sm-1">#</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr dir-paginate="reg in listaTabela | filter:q:filtroLista | itemsPerPage: 20" data-ng-class="{'pendente': reg.data_aceite_analise == '0000-00-00 00:00:00' }">
+        <td class="col-sm-1">{{reg.codigo}}</td>
+        <td class="col-sm-2">{{reg.inquilino}}</td>
+        <td class="col-sm-1">{{reg.CPF_inquilino | cpfcnpj}}</td>
+        <td class="col-sm-1">{{reg.fantasia}}</td> 
+        <td class="col-sm-1">{{reg.solicitante ? reg.solicitante : '--'}}</td> 
+         <td class="col-sm-2">{{reg.usuario_atendente}}</td> 
+        <td class="col-sm-1">{{reg.data_transm ? (reg.data_transm | date: "dd/MM/yyyy" : "UTC") : '--'}}</td>
+        <td class="col-sm-1">{{reg.hora_transm}}</td>
+
+        <td class="col-sm-1">
+          <div ng-class="{'circulo-verde' : reg.situacao_analise_liberty.toLowerCase().includes('aprovad'), 
+          'circulo-vermelho' : reg.situacao_analise_liberty.toLowerCase().includes('recusad') || reg.situacao_analise_liberty.toLowerCase().includes('reprovad'), 
+          'circulo-cinza' : reg.situacao_analise_liberty == ''}" 
+          class="circulo" 
+          data-tooltip = "{{reg.processo_liberty || reg.situacao_analise_liberty ? ('<div>Análise: ' + reg.processo_liberty + '</div><br/>' + '<div>Situação: ' + reg.situacao_analise_liberty + '</div>') : ''}}"></div></td>
+
+          <td class="col-sm-1">
+          <div ng-class="{'circulo-verde' : reg.situacao_analise_porto.toLowerCase().includes('aprovad'), 
+          'circulo-vermelho' : reg.situacao_analise_porto.toLowerCase().includes('recusad') || reg.situacao_analise_porto.toLowerCase().includes('reprovad'), 
+          'circulo-cinza' : reg.situacao_analise_porto == ''}" 
+          class="circulo" 
+          data-tooltip = "{{reg.processo_porto || reg.situacao_analise_porto ? ('<div>Análise: ' + reg.processo_porto + '</div><br/>' + '<div>Situação: ' + reg.situacao_analise_porto + '</div>') : ''}}"></div></td>
+
+          <td class="col-sm-1">
+          <div ng-class="{'circulo-verde' : reg.situacao_analise_too.toLowerCase().includes('aprovad'), 
+          'circulo-vermelho' : reg.situacao_analise_too.toLowerCase().includes('recusad') || reg.situacao_analise_too.toLowerCase().includes('reprovad'), 
+          'circulo-cinza' : reg.situacao_analise_too == ''}" 
+          class="circulo" 
+          data-tooltip = "{{reg.processo_too || reg.situacao_analise_too ? ('<div>Análise: ' + reg.processo_too + '</div><br/>' + '<div>Situação: ' + reg.situacao_analise_too + '</div>') : ''}}"></div></td> 
+
+        <td class="col-sm-1">
+        	<button type="button" class="btn btn-info" ng-click="detalhar(reg)">Detalhar</button>
+        	<button type="button" class="btn btn-warning" ng-click="registrarAtendimento(reg)" 
+          		ng-if="!reg.usuario_analise || reg.usuario_analise == '0' ">Registrar</button>
+          		<span	class="glyphicon glyphicon-alert" style="font-size: 11pt; padding-left: 7px"
+          		ng-if="reg.data_aceite_analise == '0000-00-00 00:00:00' && isRegPendenteMais30Minutos(reg)"></span>
+        </td>       
+      </tr>
+        
+    </tbody>
+  </table>
+
+  <div class="panel-footer">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="input-group">
+              <span class="input-group-addon"> <span
+                class="glyphicon glyphicon-search"></span>
+              </span> <input id="inputFiltro" type="text" data-focus class="form-control" autocomplete="off"
+                placeholder="Digite a Pesquisa" data-ng-model="q.inquilino">
+              </div>
+          </div>
+                            
+      </div>
+    </div>
+
+    <dir-pagination-controls max-size="20"></dir-pagination-controls>
+    <!--Link da documentação da paginação = https://github.com/michaelbromley/angularUtils/tree/master/src/directives/pagination -->
+
