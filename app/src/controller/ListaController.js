@@ -67,7 +67,7 @@
     	 }
 
        var listar = function(){
-         $http.post(url + 'php/consulta.php/listar', {codigo: codigoParam}).then(function(data){
+         $http.post(url + 'php/consulta.php/listar', {cnpjImob: codigoParam}).then(function(data){
             $(".loader").removeClass('hidden');
             $scope.listaTabela = data.data;
             montarArrayImobiliarias($scope.listaTabela);
