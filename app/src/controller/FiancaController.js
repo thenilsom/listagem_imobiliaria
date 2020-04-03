@@ -5,6 +5,7 @@
 
     function FiancaController(fiancaService, $window, $routeParams) {
         var vm = this;
+        vm.acao = 'listar';
         fiancaService.getFianca().then(function(response) {
             checkAuthAccess(response);
             vm.fiancas = response;
@@ -14,6 +15,41 @@
         vm.clearSearch = function() {
             vm.searchText = "";
         }
+
+        vm.detalhar = function(reg){
+             vm.registro = angular.copy(reg);
+         
+            for (var key in vm.registro) {
+              if(!vm.registro[key])
+                vm.registro[key] = '--';
+            }
+
+            setTimeout(function(){
+                $("#accordion a:first").trigger("click");
+            },500);
+
+            vm.acao = 'detalhar';
+        }
+
+        vm.voltarParaListagem = function(){
+            vm.acao = 'listar';
+        }
+
+        //retorna o nome da seguradora pelo código
+       vm.getNomeSeguradora = function(registro){
+        switch(registro.seguradora){
+          case 'BKY': return 'Berkley';
+          case 'BRA': return 'Bradesco';
+          case 'CDF': return 'Cardif';
+          case 'FFX': return 'Fairfax';
+          case 'LIB': return 'Liberty';
+          case 'POR': return 'Porto Seguro';
+          case 'PTC': return 'Pottencial';
+          case 'TOK': return 'Tokio Marine';
+          case 'TOO': return 'Too';
+          default: return registro.seguradora;
+        }
+       }
 
         /* Check for authenticity of user - logged not logged in */
         var checkAuthAccess = function(response) {

@@ -12,31 +12,31 @@
 	<div class="col-sm-10 col-center">
 		<div class="panel panel-default" style="margin-bottom: 5px; margin-top: 5px;">
 			<div class="panel-heading">
-				<h2 class="panel-title"><strong>Código SJ: {{registro.codigo}}</strong></h2>
+				<h2 class="panel-title"><strong>Código SJ: {{fiancaCtrl.registro.codigo}}</strong></h2>
 			</div>
 
 	<div class="row" style="padding: 10px;">
 		<!-- Card Liberty -->
 		<div class="card col-sm-4">
-		  <img class="card-img-top" src="./assets/img/liberty_icone.png" alt="Card image cap" style="height: 47px">
+		  <img class="card-img-top" src="./templates/fianca/img/liberty_icone.png" alt="Card image cap" style="width: 20%;">
 		  <div class="card-body">
-		    <p class="card-text"><strong>Análise :</strong> {{registro.processo_liberty}} <br/> <strong>Situação:</strong> {{registro.situacao_analise_liberty}}</p>
+		    <p class="card-text"><strong>Análise :</strong> {{fiancaCtrl.registro.processo_liberty}} <br/> <strong>Situação:</strong> {{fiancaCtrl.registro.situacao_analise_liberty}}</p>
 		  </div>
 		</div>
 		
 		<!-- Card Porto -->
 		<div class="card col-sm-4">
-		  <img class="card-img-top" src="./assets/img/porto_icone.png" alt="Card image cap" style="height: 47px">
+		  <img class="card-img-top" src="./templates/fianca/img/porto_icone.png" alt="Card image cap" style="width: 20%;">
 		  <div class="card-body">
-		    <p class="card-text"><strong>Análise :</strong> {{registro.processo_porto}} <br/> <strong>Situação:</strong> {{registro.situacao_analise_porto}}</p>
+		    <p class="card-text"><strong>Análise :</strong> {{fiancaCtrl.registro.processo_porto}} <br/> <strong>Situação:</strong> {{fiancaCtrl.registro.situacao_analise_porto}}</p>
 		  </div>
 		</div>
 		
 		<!-- Card Too -->
 		<div class="card col-sm-4">
-		  <img class="card-img-top" src="./assets/img/too_icone.png" alt="Card image cap">
+		  <img class="card-img-top" src="./templates/fianca/img/too_icone.png" alt="Card image cap" style="width: 20%;">
 		  <div class="card-body">
-		    <p class="card-text"><strong>Análise :</strong> {{registro.processo_too}} <br/> <strong>Situação:</strong> {{registro.situacao_analise_too}}</p>
+		    <p class="card-text"><strong>Análise :</strong> {{fiancaCtrl.registro.processo_too}} <br/> <strong>Situação:</strong> {{fiancaCtrl.registro.situacao_analise_too}}</p>
 		  </div>
 		</div>
 	</div>
@@ -57,7 +57,7 @@
 								<div class="collapseTwo panel-collapse collapse">
 									<div class="panel-body">
 										<!-- Detalhamento dados do pretendente -->
-										<div data-ng-include="'./src/view/lista/dadosPretendenteDetalhe.html'"></div> 
+										<div data-ng-include="'./templates/fianca/detalhe/dadosPretendenteDetalhe.html'"></div> 
 										
 									</div>
 								</div>
@@ -73,7 +73,7 @@
 								<div class="collapseOne panel-collapse collapse">
 									<div class="panel-body">												
 										<!-- Detalhamento dados residenciais -->
-										<div data-ng-include="'./src/view/lista/dadosResidenciaisDetalhe.html'"></div> 
+										<div data-ng-include="'./templates/fianca/detalhe/dadosResidenciaisDetalhe.html'"></div> 
 									</div>
 								</div>
 							</div>
@@ -89,7 +89,7 @@
 								<div class="collapseNine panel-collapse collapse">
 									<div class="panel-body">
 										<!-- Detalhamento dados profissionais -->
-										<div data-ng-include="'./src/view/lista/dadosProfissionaisDetalhe.html'"></div>								
+										<div data-ng-include="'./templates/fianca/detalhe/dadosProfissionaisDetalhe.html'"></div>								
 									</div>
 								</div>
 							</div>
@@ -105,7 +105,7 @@
 								<div class="collapseEspecial panel-collapse collapse">
 									<div class="panel-body">
 										<!-- Detalhamento dados imóvel -->
-										<div data-ng-include="'./src/view/lista/dadosImovelDetalhe.html'"></div>																				
+										<div data-ng-include="'./templates/fianca/detalhe/dadosImovelDetalhe.html'"></div>																				
 									</div>
 								</div>
 							</div>
@@ -121,7 +121,7 @@
 								<div class="collapseAutomacao panel-collapse collapse">
 									<div class="panel-body">
 										<!-- Detalhamento dados composição de renda -->
-										<div data-ng-include="'./src/view/lista/composicaoRendaDetalhe.html'"></div> 
+										<div data-ng-include="'./templates/fianca/detalhe/composicaoRendaDetalhe.html'"></div> 
 																					
 									</div>
 								</div>
@@ -130,36 +130,25 @@
 						</div>
 						
 					</div>
-				
-
-					<a ng-href="../app/php/uploads/{{gerarLinkPastaUpload(registro)}}" ng-if="registro.fezUpload"
-					class="btn btn-info" role="button">Ver arquivos</a>
-
-					<div class="alert alert-warning" ng-if="!registro.fezUpload">
-  						Não fez upload de arquivos.
-					</div>
+			
 			</div>
 
 		</div>
 
 		<div class="row" style="text-align: right;">
-			<label class="col-xs-11 control-label label-thin">Apólice: {{registro.apolice}}</label>
-			<label class="col-xs-11 control-label label-thin">Seguradora: {{getNomeSeguradora(registro)}}</label>
-			<span class="glyphicon glyphicon-pencil" style="cursor: pointer; margin-right: 60px;"  data-ng-click="iniciarDadosAplice()"
-			data-toggle="modal" data-target="#modalDadosApolice"></span>
+			<label class="col-xs-11 control-label label-thin">Apólice: {{fiancaCtrl.registro.apolice}}</label>
+			<label class="col-xs-11 control-label label-thin">Seguradora: {{fiancaCtrl.getNomeSeguradora(fiancaCtrl.registro)}}</label>
 		</div>
 		
 		<!-- Importe dos botoes do Form -->
 					<div class="form-group last">
 						<div class="col-md-12 text-center">
-							 <md-button class="md-raised" style="background-color: green; color: white" 
-						      ng-click="irParaListagem()">Voltar a listagem <span aria-hidden="true"></span>
-						      </md-button>
+							 <button class="btn btn-primary" 
+						      ng-click="fiancaCtrl.voltarParaListagem()">Voltar a listagem <span aria-hidden="true"></span>
+						      </button>
 						</div>
 				</div>
 
 	</div>
 	
-	<!-- Inclusão do modal dados apolice -->
-     <div data-ng-include="'./src/view/lista/modalDadosApolice.html'"></div> 
 </div>

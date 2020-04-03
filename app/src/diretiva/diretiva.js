@@ -11,7 +11,7 @@ diretiva.directive('tooltip', function () {
                 trigger: 'hover',
                 html: true,
                 title: attrs.tooltip,
-                placement: attrs.posicao
+                placement: 'top'
             });
         }
     }
