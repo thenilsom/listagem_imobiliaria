@@ -22,4 +22,12 @@ class Fianca {
         $result = $stmt->fetchAll();
         return $result;
     }
+
+    public function getVariaveisSessao()
+    {   $session = Session::getInstance();
+        $CGC_imob = $session->cnpj_imob;
+        $codigo_user = $session->usuario_codigo;
+        $result = array('CGC_imob' => $CGC_imob, 'codigo_user' => $codigo_user); 
+        echo json_encode($result);
+    }
 }
