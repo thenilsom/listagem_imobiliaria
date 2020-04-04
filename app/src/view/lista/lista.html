@@ -34,14 +34,18 @@ div {
 
 
     <div class="form-inline text-right" inquilino="form">  
+      <div class="col-md-10">
         <div class="form-group">
             <div class="btn-group">
                 <input id="searchinput" type="search" ng-model="fiancaCtrl.searchText" class="form-control" placeholder="Pesquisar ...">
                 <span id="searchclear" class="" ng-click="fiancaCtrl.clearSearch()"></span>
             </div>
-
-            <button type="button" class="btn btn-warning" ng-click="fiancaCtrl.enviarAnalise()">Enviar Cadastro para Análise</button>
         </div>
+      </div>
+
+       <div class="col-md-2">
+        <button type="button" class="btn btn-warning" ng-click="fiancaCtrl.enviarAnalise()">Enviar Cadastro para Análise</button>
+      </div>
     </div>
     <hr>  
           

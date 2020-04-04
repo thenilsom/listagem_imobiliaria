@@ -28,6 +28,6 @@ class Fianca {
         $CGC_imob = $session->cnpj_imob;
         $codigo_user = $session->usuario_codigo;
         $result = array('CGC_imob' => $CGC_imob, 'codigo_user' => $codigo_user); 
-        echo json_encode($result);
+        return $result;
     }
 }
