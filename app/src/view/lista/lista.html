@@ -18,6 +18,10 @@
   background-color: rgba(179, 179, 179, 0.87) !important;
 }
 
+.cor-titulo{
+	color: #005E9E
+}
+
 div {
   text-align: left;
 }
@@ -26,7 +30,7 @@ div {
 
   <div class="card mb-3">
    <div class="card-header">
-          <i><img src = "img/fianca_icone.png"></i> SEGURO FIANÇA
+          <i><img src = "img/fianca_icone.png"></i> <label class="cor-titulo"><strong>SEGURO FIANÇA</strong></label>
    </div>
 
 <div class="card-body">
@@ -44,7 +48,7 @@ div {
       </div>
 
        <div class="col-md-2">
-        <button type="button" class="btn btn-warning" ng-click="fiancaCtrl.enviarAnalise()">Enviar Cadastro para Análise</button>
+        <button type="button" class="btn btn-primary" ng-click="fiancaCtrl.enviarAnalise()">Enviar Cadastro para Análise</button>
       </div>
     </div>
     <hr>  
@@ -52,31 +56,31 @@ div {
   <table class="table table-striped">
     <thead>
       <tr>
-        <th class='th-sort-link' ng-click="sortBy = 'codigo'; sortOrder = !sortOrder">CÓDIGO
+        <th class='th-sort-link cor-titulo' ng-click="sortBy = 'codigo'; sortOrder = !sortOrder">CÓDIGO
           <span ng-show="sortBy == 'codigo' && !sortOrder" class="fa fa-sort-alpha-asc"></span>
           <span ng-show="sortBy == 'codigo' && sortOrder" class="fa fa-sort-alpha-desc"></span>
         </th>
-        <th class='th-sort-link' ng-click="sortBy = 'inquilino'; sortOrder = !sortOrder">CLIENTE
+        <th class='th-sort-link cor-titulo' ng-click="sortBy = 'inquilino'; sortOrder = !sortOrder">CLIENTE
           <span ng-show="sortBy == 'inquilino' && !sortOrder" class="fa fa-sort-alpha-asc"></span>
           <span ng-show="sortBy == 'inquilino' && sortOrder" class="fa fa-sort-alpha-desc"></span>
         </th>
-        <th class='th-sort-link' ng-click="sortBy = 'CPF_inquilino'; sortOrder = !sortOrder">CPF/CNPJ
+        <th class='th-sort-link cor-titulo' ng-click="sortBy = 'CPF_inquilino'; sortOrder = !sortOrder">CPF/CNPJ
           <span ng-show="sortBy == 'CPF_inquilino' && !sortOrder" class="fa fa-sort-alpha-asc"></span>
           <span ng-show="sortBy == 'CPF_inquilino' && sortOrder" class="fa fa-sort-alpha-desc"></span>
         </th>
-        <th class='th-sort-link' ng-click="sortBy = 'solicitante'; sortOrder = !sortOrder">USUÁRIO
+        <th class='th-sort-link cor-titulo' ng-click="sortBy = 'solicitante'; sortOrder = !sortOrder">USUÁRIO
           <span ng-show="sortBy == 'solicitante' && !sortOrder" class="fa fa-sort-alpha-asc"></span>
           <span ng-show="sortBy == 'solicitante' && sortOrder" class="fa fa-sort-alpha-desc"></span>
         </th>
-        <th class='th-sort-link' ng-click="sortBy = 'usuario_atendente'; sortOrder = !sortOrder">ATENDENTE
+        <th class='th-sort-link cor-titulo' ng-click="sortBy = 'usuario_atendente'; sortOrder = !sortOrder">ATENDENTE
           <span ng-show="sortBy == 'usuario_atendente' && !sortOrder" class="fa fa-sort-alpha-asc"></span>
           <span ng-show="sortBy == 'usuario_atendente' && sortOrder" class="fa fa-sort-alpha-desc"></span>
         </th>
-        <th class='th-sort-link' ng-click="sortBy = 'data_transm'; sortOrder = !sortOrder">DATA
+        <th class='th-sort-link cor-titulo' ng-click="sortBy = 'data_transm'; sortOrder = !sortOrder">DATA
           <span ng-show="sortBy == 'data_transm' && !sortOrder" class="fa fa-sort-alpha-asc"></span>
           <span ng-show="sortBy == 'data_transm' && sortOrder" class="fa fa-sort-alpha-desc"></span>
         </th>
-        <th class='th-sort-link' ng-click="sortBy = 'hora_transm'; sortOrder = !sortOrder">HORA
+        <th class='th-sort-link cor-titulo' ng-click="sortBy = 'hora_transm'; sortOrder = !sortOrder">HORA
           <span ng-show="sortBy == 'hora_transm' && !sortOrder" class="fa fa-sort-alpha-asc"></span>
           <span ng-show="sortBy == 'hora_transm' && sortOrder" class="fa fa-sort-alpha-desc"></span>
         </th>
@@ -85,7 +89,7 @@ div {
         <th ><img src="./templates/fianca/img/porto_icone.png" class="icon-seguradora" style="height: 47px"></div></th>
         <th ><img src="./templates/fianca/img/too_icone.png" class="icon-seguradora"></div></th>
 
-        <th >#</th>
+        <th ></th>
       </tr>
     </thead>
     <tbody>
@@ -132,6 +136,19 @@ div {
       </tr>
         
     </tbody>
+    <tfoot>
+            <tr style = "color:#005E9E;border-bottom:2px solid #ddd;">
+                <th>CÓDIGO</th>
+                <th>CLIENTE</th>
+                <th>CPF/CNPJ</th>
+                <th>USUÁRIO</th>
+                <th>ATENDENTE</th>
+                <th>DATA</th>
+                <th>HORA</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </tfoot>
   </table>
 
     <dir-pagination-controls max-size="20"></dir-pagination-controls>

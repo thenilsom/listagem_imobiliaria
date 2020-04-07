@@ -12,7 +12,8 @@ class Fianca {
 
     public function getFianca()
     {   $session = Session::getInstance();
-        $sql = "SELECT *, (SELECT fantasia FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as fantasia, 
+        $sql = "SELECT *, DATE_FORMAT(data_transm, '%d/%m/%Y') as data_transm_formatada,
+            (SELECT fantasia FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as fantasia, 
             (SELECT razao FROM imobs WHERE imobs.cpf=fianca.CGC_imob) as razao, 
             (SELECT razao FROM corretores WHERE corretores.codigo=fianca.corretor) as corretora,
             (SELECT nome FROM usuarios WHERE usuarios.codigo=fianca.usuario_analise) as usuario_atendente
