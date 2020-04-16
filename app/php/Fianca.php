@@ -27,7 +27,7 @@ class Fianca {
     public function getVariaveisSessao()
     {   $session = Session::getInstance();
         $CGC_imob = $session->cnpj_imob;
-        $codigo_user = $session->usuario_codigo;
+        $codigo_user = $session->codigo;
         $result = array('CGC_imob' => $CGC_imob, 'codigo_user' => $codigo_user); 
         return $result;
     }
