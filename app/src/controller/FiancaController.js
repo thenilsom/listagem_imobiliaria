@@ -39,7 +39,8 @@
            fiancaService.getVariaveisSessao().then(function(response) {
              var url = 'https://www.segurosja.com.br/gerenciador/fianca/app/index.php?var1=' 
                               + fiancaService.criptografar(fiancaService.apenasNumeros(response.CGC_imob))
-                              + '&var8=' + response.codigo_user;
+                              + '&var8=' + response.codigo_user
+                              + '&var12=' + response.nivel_acesso;
 
             window.open(url, '_blank');
           });
