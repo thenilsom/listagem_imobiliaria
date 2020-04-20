@@ -28,7 +28,7 @@ class Fianca {
     {   $session = Session::getInstance();
         $CGC_imob = $session->cnpj_imob;
         $codigo_user = $session->codigo;
-        $nivelAcesso = $session->nivel_acesso;
+        $nivelAcesso = $session->acesso->nivel_acesso;
         $result = array('CGC_imob' => $CGC_imob, 'codigo_user' => $codigo_user, 'nivel_acesso' => $nivelAcesso); 
         return $result;
     }
